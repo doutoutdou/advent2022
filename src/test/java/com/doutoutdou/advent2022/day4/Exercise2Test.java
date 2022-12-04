@@ -1,48 +1,31 @@
 package com.doutoutdou.advent2022.day4;
 
-import com.doutoutdou.advent2022.utils.ExerciceUtils;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.groupingBy;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 
 @Log4j2
-class Exercise2Test {
+class Exercise2Test extends CommonTest {
 
     @Test
-        // Version très naive
-    void version1() {
-        var data = ExerciceUtils.loadFromFileAsStringList("4");
-        int sum = 0;
-        assert data != null;
-        for (String value : data) {
-            //    2-88,13-89
-            // On récupère donc 2 string
-            String[] values = value.split(",");
-            var v0Index = values[0].indexOf("-");
-            var v1 = Integer.parseInt(values[0].substring(0, v0Index));
-            var v2 = Integer.parseInt(values[0].substring(v0Index + 1));
-            var v1Index = values[1].indexOf("-");
-            var v3 = Integer.parseInt(values[1].substring(0, v1Index));
-            var v4 = Integer.parseInt(values[1].substring(v1Index + 1));
-            if ((v1 == v3 || v1 == v4 ||  v2 == v3 || v2 == v4) || (v1 > v3 && v1 < v4) || (v2 > v3 && v2 < v4) || (v1 < v3 && v2 > v4)) {
-                sum++;
-            }
-        }
-        long startTime = System.nanoTime();
-
-        log.info("Duration " + (System.nanoTime() - startTime) + "ns");
-        log.info(sum);
-
+    void version2() {
+        run(exercice2Predicate);
     }
 
-
-//    18:02:59.135 [main] INFO com.doutoutdou.advent2022.day4.Exercise2Test - Duration 1022ns
-//18:02:59.137 [main] INFO com.doutoutdou.advent2022.day4.Exercise2Test - 883
+    // Retourne vrai si
+    // la première valeur est égale à la 3ème ou la 4eme ou la deuxième valeur est égale à la 3ème ou la 4ème
+    // OU SI
+    // la première valeur est supérieure à la  3ème et inférieure à la 4eme
+    // OU SI
+    // la deuxième valeur est supérieure à la  3ème et inférieure à la 4eme
+    // OU SI
+    // la première valeur est inférieure à la 3ème valeur et la deuxième valeur est supérieure à la 4eme
+    Predicate<List<Integer>> exercice2Predicate = e -> (Objects.equals(e.get(0), e.get(2)) || Objects.equals(e.get(0), e.get(3)) || Objects.equals(e.get(1), e.get(2)) || Objects.equals(e.get(1), e.get(3))) || (e.get(0) > e.get(2) && e.get(0) < e.get(3)) || (e.get(1) > e.get(2) && e.get(1) < e.get(3)) || (e.get(0) < e.get(2) && e.get(1) > e.get(3));
+//22:12:15.070 [main] INFO com.doutoutdou.advent2022.day4.CommonTest - Duration 1547954ns
+//22:12:15.070 [main] INFO com.doutoutdou.advent2022.day4.CommonTest - 515
 }
 
 

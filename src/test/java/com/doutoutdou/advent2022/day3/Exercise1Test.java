@@ -38,7 +38,6 @@ class Exercise1Test {
     @Test
     void version1() {
         var data = ExerciceUtils.loadFromFileAsStringList("3");
-
         long startTime = System.nanoTime();
         assert data != null;
         var duplicateLetters = data.stream().map(s -> {
