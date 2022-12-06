@@ -1,6 +1,6 @@
 package com.doutoutdou.advent2022.day4;
 
-import com.doutoutdou.advent2022.utils.ExerciceUtils;
+import com.doutoutdou.advent2022.utils.ExerciseUtils;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 public abstract class CommonTest {
 
     void run(Predicate<List<Integer>> predicate) {
-        var data = ExerciceUtils.loadFromFileAsStringList("4");
+        var data = ExerciseUtils.loadFromFileAsStringList("4");
         long startTime = System.nanoTime();
         int sum = 0;
         assert data != null;

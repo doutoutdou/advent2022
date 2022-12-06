@@ -1,6 +1,6 @@
 package com.doutoutdou.advent2022.day1;
 
-import com.doutoutdou.advent2022.utils.ExerciceUtils;
+import com.doutoutdou.advent2022.utils.ExerciseUtils;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class Exercise2Test {
     @Test
         // Version naive avec un for
     void version1() {
-        var data = ExerciceUtils.loadFromFileAsStringList("1");
+        var data = ExerciseUtils.loadFromFileAsStringList("1");
 
         long startTime = System.nanoTime();
         int currentValue = 0;
@@ -42,7 +42,7 @@ class Exercise2Test {
     @Test
         // Version naive avec un for mais sans ajouter tous les élements à la liste
     void version2() {
-        var data = ExerciceUtils.loadFromFileAsStringList("1");
+        var data = ExerciseUtils.loadFromFileAsStringList("1");
 
         long startTime = System.nanoTime();
         int maxElement = 3;

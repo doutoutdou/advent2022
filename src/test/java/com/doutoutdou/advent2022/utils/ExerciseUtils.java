@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.List;
 
 @UtilityClass
-public class ExerciceUtils {
+public class ExerciseUtils {
 
     public static String loadFromFile(String day) {
-        ClassLoader classLoader = ExerciceUtils.class.getClassLoader();
-        var file = new File(classLoader.getResource("exercice" + day).getFile());
+        ClassLoader classLoader = ExerciseUtils.class.getClassLoader();
+        var file = new File(classLoader.getResource("exercise" + day).getFile());
         try {
             return FileUtils.readFileToString(file, "UTF-8");
         } catch (IOException e) {
@@ -23,8 +23,8 @@ public class ExerciceUtils {
     }
 
     public static List<String> loadFromFileAsStringList(String day) {
-        ClassLoader classLoader = ExerciceUtils.class.getClassLoader();
-        var file = new File(classLoader.getResource("exercice" + day).getFile());
+        ClassLoader classLoader = ExerciseUtils.class.getClassLoader();
+        var file = new File(classLoader.getResource("exercise" + day).getFile());
         try {
             return FileUtils.readLines(file, "UTF-8");
         } catch (IOException e) {

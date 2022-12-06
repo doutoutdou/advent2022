@@ -1,6 +1,6 @@
 package com.doutoutdou.advent2022.day1;
 
-import com.doutoutdou.advent2022.utils.ExerciceUtils;
+import com.doutoutdou.advent2022.utils.ExerciseUtils;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ class Exercise1Test {
     @Test
         // Version naive avec un for
     void version1() {
-        var data = ExerciceUtils.loadFromFileAsStringList("1");
+        var data = ExerciseUtils.loadFromFileAsStringList("1");
         long startTime = System.nanoTime();
 
         int biggestValue = 0;
@@ -37,7 +37,7 @@ class Exercise1Test {
     @Test
     void version2() {
         // pas de moi, pour comprendre comment le faire sans un for
-        var data = ExerciceUtils.loadFromFile("1");
+        var data = ExerciseUtils.loadFromFile("1");
         long startTime = System.nanoTime();
 
         int value = Arrays.stream(data.split("\n\n")).mapToInt(s -> Arrays.stream(s.split("\n")).mapToInt(Integer::parseInt).sum()).max().getAsInt();

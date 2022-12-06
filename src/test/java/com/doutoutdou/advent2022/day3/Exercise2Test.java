@@ -1,6 +1,6 @@
 package com.doutoutdou.advent2022.day3;
 
-import com.doutoutdou.advent2022.utils.ExerciceUtils;
+import com.doutoutdou.advent2022.utils.ExerciseUtils;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class Exercise2Test {
 
     @Test
     void version1() {
-        var data = ExerciceUtils.loadFromFileAsStringList("3");
+        var data = ExerciseUtils.loadFromFileAsStringList("3");
 
         long startTime = System.nanoTime();
         assert data != null;

@@ -1,12 +1,9 @@
 package com.doutoutdou.advent2022.day2;
 
-import com.doutoutdou.advent2022.utils.ExerciceUtils;
+import com.doutoutdou.advent2022.utils.ExerciseUtils;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 @Log4j2
@@ -14,7 +11,7 @@ class Exercise2Test {
 
     @Test
     void version1() {
-        var data = ExerciceUtils.loadFromFileAsStringList("2");
+        var data = ExerciseUtils.loadFromFileAsStringList("2");
         long startTime = System.nanoTime();
 
         int score = 0;
@@ -30,7 +27,7 @@ class Exercise2Test {
     // https://stackoverflow.com/questions/24308146/why-is-a-combiner-needed-for-reduce-method-that-converts-type-in-java-8
     @Test
     void version2() {
-        var data = ExerciceUtils.loadFromFileAsStringList("2");
+        var data = ExerciseUtils.loadFromFileAsStringList("2");
         long startTime = System.nanoTime();
 
         int score = data
