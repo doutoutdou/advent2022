@@ -14,11 +14,42 @@ import java.util.stream.Stream;
 @Log4j2
 public class ExerciseTest {
     @Test
-    void test() {
-        var data = ExerciseUtils.loadFromFileAsStringList("7");
+    void exo1() {
+
         long startTime = System.nanoTime();
-        assert data != null;
         int limit = 100000;
+        FileSystem fileSystem = buildFileSystem();
+
+        // Il faut maintenant trouver les dossiers dont la taille ne dépasse pas 100000
+        // On pourrait retourner la liste à la création mais ca serait un peu triché (déjà que l'on set la taille du parent dynamiquement)
+        // on fait donc un stream récursif
+
+        var result = fileSystem.getRootDirectory().flattened().map(Directory::getTotalSize).filter(totalSize -> totalSize <= limit).mapToInt(value -> value).sum();
+        log.info(result);
+
+        log.info("Duration " + (System.nanoTime() - startTime) + "ns");
+    }
+
+    @Test
+    void exo2() {
+        long startTime = System.nanoTime();
+
+        FileSystem fileSystem = buildFileSystem();
+
+        var spaceNeeded = 30000000;
+        // On calcule la taille libre actuellement, cad la taille totale - celle occupee
+        var freeSize = 70000000 - fileSystem.getRootDirectory().getTotalSize();
+
+        Optional<Integer> directorySize = fileSystem.getRootDirectory().flattened().map(Directory::getTotalSize).filter(totalSize -> totalSize + freeSize >= spaceNeeded).sorted().findFirst();
+        directorySize.ifPresentOrElse(log::info, () -> log.info("no directory found"));
+
+        log.info("Duration " + (System.nanoTime() - startTime) + "ns");
+
+    }
+
+    private static FileSystem buildFileSystem() {
+        var data = ExerciseUtils.loadFromFileAsStringList("7");
+        assert data != null;
         var fileSystem = new FileSystem();
 
         for (String line : data) {
@@ -37,14 +68,7 @@ public class ExerciseTest {
                 }
             }
         }
-
-        // Il faut maintenant trouver les dossiers dont la taille ne dépasse pas 100000
-        // On pourrait retourner la liste à la création mais ca serait un peu triché (déjà que l'on set la taille du parent dynamiquement)
-        // on fait donc un stream récursif
-
-        var result = fileSystem.getRootDirectory().flattened().map(Directory::getTotalSize).filter(totalSize -> totalSize < limit).mapToInt(value -> value).sum();
-        log.info(result);
-        log.info("Duration " + (System.nanoTime() - startTime) + "ns");
+        return fileSystem;
     }
 
     @NoArgsConstructor
