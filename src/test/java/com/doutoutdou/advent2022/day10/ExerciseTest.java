@@ -53,11 +53,11 @@ public class ExerciseTest {
                 if (registerMove.startsWith("-")) {
                     crt.draw(cpu.getRegister());
                     crt.draw(cpu.getRegister());
-                    cpu.setRegister(cpu.getRegister() - Integer.parseInt(registerMove.substring(1)));
+                    cpu.decreaseRegister(Integer.parseInt(registerMove.substring(1)));
                 } else {
                     crt.draw(cpu.getRegister());
                     crt.draw(cpu.getRegister());
-                    cpu.setRegister(cpu.getRegister() + Integer.parseInt(registerMove));
+                    cpu.increaseRegister(Integer.parseInt(registerMove));
                 }
 
             }
